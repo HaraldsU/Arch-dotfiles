@@ -20,6 +20,7 @@
 
 !hypr/
 !hypr/**
+hypr/hyprland.conf
 
 !cheat/
 !cheat/**
