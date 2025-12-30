@@ -23,6 +23,7 @@ vim.opt.cursorline = true
 -- vim.opt.wrap = false 
 vim.opt.linebreak = true
 vim.opt.breakindent = true
+vim.lsp.enable('pyright')
 
 -- Folding
 vim.api.nvim_create_augroup('remember_folds', { clear = true })
