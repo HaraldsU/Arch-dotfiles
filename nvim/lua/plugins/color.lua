@@ -7,5 +7,6 @@
 -- }
 
 return {
-	"navarasu/onedark.nvim",
+	-- "navarasu/onedark.nvim",
+	"tiagovla/tokyodark.nvim",
 }
