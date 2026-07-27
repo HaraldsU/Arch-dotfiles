@@ -43,6 +43,7 @@ configuration {
 /*	parse-known-hosts: true;*/
 /*	combi-modes: "window,run";*/
 /*	matching: "normal";*/
+	matching: "prefix";
 /*	tokenize: true;*/
 /*	m: "-5";*/
 /*	filter: ;*/
