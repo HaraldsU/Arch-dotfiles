@@ -16,7 +16,12 @@ vim.opt.smartindent = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
-vim.opt.colorcolumn = "80"
+
+vim.opt.colorcolumn = "80" -- Vertical line
+vim.opt.textwidth = 80
+vim.opt.formatoptions:remove("c")
+vim.opt.formatprg = ""
+
 vim.opt.scrolloff = 10
 vim.opt.splitright = true
 vim.opt.cursorline = true
@@ -25,6 +30,8 @@ vim.opt.linebreak = true
 vim.opt.breakindent = true
 -- vim.opt.previewheight = 3
 vim.lsp.enable('pyright')
+vim.opt.statusline = '%F%<'
+vim.opt.maxsearchcount = 9999
 
 vim.cmd("au FileType qf resize 3")
 
@@ -64,4 +71,8 @@ vim.api.nvim_create_user_command('Dlay', function()
 	vim.cmd('wincmd k')
 	vim.cmd('vsplit')
 end, {})
+
+vim.g.vimtex_compiler_latexmk_engines = {
+  ['_'] = '-xelatex',
+}
 

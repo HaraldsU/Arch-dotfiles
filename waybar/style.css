@@ -1,7 +1,7 @@
 /* --- Global Styles --- */
 * {
   /* font-family: 'SF Pro Text', 'Inter', 'Segoe UI, NotoSans Nerd Font', sans-serif; */
-  font-family: 'SF Pro Text', 'Inter', 'Segoe UI', 'NotoSans Nerd Font', 'Font Awesome 6 Free', sans-serif;
+  font-family: 'NotoSans Nerd Font', 'SF Pro Text', 'Inter', 'Segoe UI', 'Font Awesome 6 Free', sans-serif;
   font-size: 15px;
   min-height: 0;
   padding-right: 0px;
@@ -130,6 +130,7 @@
 #backlight,
 #network,
 #custom-lock,
+#custom-weather,
 #battery {
   background-color: #1a1b26;
   padding: 0.3rem 0.7rem;
@@ -146,14 +147,20 @@
 #backlight:hover,
 #network:hover,
 #custom-lock:hover,
+#custom-weather:hover,
 #battery:hover {
   background-color: rgb(41, 42, 53);
 }
 
-#bluetooth {
-  margin-left: 0px; 
+#custom-weather {
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
+}
+
+#bluetooth {
+  margin-left: 0px; 
+  border-top-left-radius: 0px; /* 6px; */
+  border-bottom-left-radius: 0px;
 }
 
 #battery {

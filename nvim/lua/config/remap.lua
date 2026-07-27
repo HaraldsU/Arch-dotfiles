@@ -18,6 +18,7 @@ vim.keymap.set("n", "<Up>", "<Nop>")
 --     end
 -- })
 
+-- Spelling
 vim.keymap.set('n', '<C-l>', function()
 	vim.opt.spell = not vim.opt.spell:get()
 	if vim.opt.spell then
@@ -29,14 +30,32 @@ end, { silent = true })
 -- vim.keymap.set("i", "{", "{<CR>}<Esc>ko", { noremap = true, silent = true })
 -- vim.keymap.set("i", "{", "{}<Esc>ha", { noremap = true, silent = true })
 -- vim.keymap.set("i", "(", "()<Esc>ha", { noremap = true, silent = true })
-vim.keymap.set("i", "[", "[]<Esc>ha", { noremap = true, silent = true })
-vim.keymap.set("i", '"', '""<Esc>ha', { noremap = true, silent = true })
-vim.keymap.set("i", "'", "''<Esc>ha", { noremap = true, silent = true })
-vim.keymap.set("i", "`", "``<Esc>ha", { noremap = true, silent = true })
+-- vim.keymap.set("i", "[", "[]<Esc>ha", { noremap = true, silent = true })
+-- vim.keymap.set("i", '"', '""<Esc>ha', { noremap = true, silent = true })
+-- vim.keymap.set("i", "'", "''<Esc>ha", { noremap = true, silent = true })
+-- vim.keymap.set("i", "`", "``<Esc>ha", { noremap = true, silent = true })
 
 vim.keymap.set('n', '<F3>', function()
   local view = vim.fn.winsaveview()   
   vim.cmd("normal! gg=G")             
   vim.fn.winrestview(view)            
 end, { silent = true })
+
+-- Templates:
+vim.keymap.set("n", "<leader>ti", "<cmd>Telescope find_template type=insert<cr>", { desc = "Insert template" })
+vim.keymap.set("n", "<leader>tt", "<cmd>Template<cr>", { desc = "Template (cmd)" })
+
+-- Comments:
+-- Normal mode: whole file
+vim.keymap.set('n', '<leader>c', ':%s/^\\(\\s*\\)print/\\1# print/g<CR>', { desc = 'Comment prints (file)' })
+vim.keymap.set('n', '<leader>u', ':%s/^\\(\\s*\\)# print/\\1print/g<CR>', { desc = 'Uncomment prints (file)' })
+
+-- Visual mode: selection only
+vim.keymap.set('v', '<leader>c', ':s/^\\(\\s*\\)print/\\1# print/g<CR>', { desc = 'Comment prints (selection)' })
+vim.keymap.set('v', '<leader>u', ':s/^\\(\\s*\\)# print/\\1print/g<CR>', { desc = 'Uncomment prints (selection)' })
+
+-- NoNeckPain
+vim.keymap.set("n", "<leader>nn", vim.cmd.NoNeckPain)
+vim.keymap.set("n", "<leader>n[", vim.cmd.NoNeckPainWidthUp)
+vim.keymap.set("n", "<leader>n]", vim.cmd.NoNeckPainWidthDown)
 
