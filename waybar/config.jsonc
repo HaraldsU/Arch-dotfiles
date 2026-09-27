@@ -26,7 +26,8 @@
 	"custom/weather": {
 		"format": "{}",
 		"interval": 600,
-		"exec": "curl -s 'wttr.in/Ogre?format=%t+%C+%uuv+%w+%S+%m+%s'",
+		// "exec": "curl -s 'wttr.in/Ogre?format=%t+%C+%uuv+%w+%S+%m+%s'",
+		"exec": "curl -s 'wttr.in/Ogre?format=%t+%C+%S+%m+%s'",
 		"tooltip": false
 	},
 
@@ -65,7 +66,8 @@
 	"clock": {
 		"timezone": "Europe/Riga",
 		"tooltip": false,
-		"format": "{:%H:%M:%S  -  %A, %d}",
+		// "format": "{:%H:%M:%S  -  %b, %a:%d}",
+		"format": "{:%H:%M:%S  -  %d.%m.%y  -  %A}",
 		"interval": 1
 	},
 
