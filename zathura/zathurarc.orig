@@ -1,0 +1,17 @@
+set selection-clipboard clipboard
+set highlight-color rgba(159,251,0,0.9)
+set highlight-fg    rgba(0,0,0,1)
+set font            "monospace normal 11"
+
+<<<<<<< HEAD
+set recolor                 "true"
+set recolor-darkcolor       "#DEDEDE"
+set recolor-lightcolor      "#121212"
+set recolor-keephue         "true"
+
+=======
+# set recolor true
+set recolor-lightcolor "#1E1E2E"
+set recolor-darkcolor "#CDD6F4"
+set recolor-keephue true
+>>>>>>> c0de3c3 (Many, many overdue changes)

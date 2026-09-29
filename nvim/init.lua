@@ -13,7 +13,8 @@ vim.opt.clipboard = "unnamedplus"
 -- })
 vim.opt.foldmethod = "manual"
 vim.opt.smartindent = true
-vim.opt.hlsearch = false
+-- vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
@@ -25,7 +26,7 @@ vim.opt.formatprg = ""
 vim.opt.scrolloff = 10
 vim.opt.splitright = true
 vim.opt.cursorline = true
--- vim.opt.wrap = false 
+vim.opt.wrap = false 
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 -- vim.opt.previewheight = 3
