@@ -50,20 +50,20 @@ vim.lsp.config('ocamllsp', {
 	capabilities = capabilities,
 })
 
-vim.lsp.config('ccls', {
-	cmd = {'ccls'},
-	filetypes = {'c', 'cpp', 'objc', 'objcpp', 'cuda'},
-	root_markers = {'.ccls', 'compile_commands.json', '.git'},
-	capabilities = capabilities,
-	init_options = {
-		clang = {
-			extraArgs = {
-				"-Wall",
-				"-Wextra",
-			},
-		},
-	},
-})
+-- vim.lsp.config('ccls', {
+	-- cmd = {'ccls'},
+	-- filetypes = {'c', 'cpp', 'objc', 'objcpp', 'cuda'},
+	-- root_markers = {'.ccls', 'compile_commands.json', '.git'},
+	-- capabilities = capabilities,
+	-- init_options = {
+		-- clang = {
+			-- extraArgs = {
+				-- "-Wall",
+				-- "-Wextra",
+			-- },
+		-- },
+	-- },
+-- })
 
 vim.lsp.config('texlab', {
 	cmd = {'texlab'},
@@ -73,7 +73,8 @@ vim.lsp.config('texlab', {
 })
 
 -- Enable LSP servers for the configured filetypes
-vim.lsp.enable({'gleam', 'ocamllsp', 'ccls', 'texlab'})
+-- vim.lsp.enable({'gleam', 'ocamllsp', 'ccls', 'texlab'})
+vim.lsp.enable({'gleam', 'ocamllsp', 'texlab'})
 
 -- Configure nvim-cmp
 local cmp = require('cmp')

@@ -23,12 +23,12 @@
 	// "custom/music",
 	],
 
-	"custom/weather": {
-		"format": "{}",
-		"interval": 600,
-		"exec": "curl -s 'wttr.in/Ogre?format=%t+%C+%uuv+%w+%S+%m+%s'",
-		"tooltip": false
-	},
+	// "custom/weather": {
+	// 	"format": "{}",
+	// 	"interval": 600,
+	//	"exec": "curl -s 'wttr.in/Ogre?format=%t+%C+%uuv+%w+%S+%m+%s'",
+	//	"tooltip": false
+	// },
 
 	"hyprland/workspaces": {
 		"format": "{name}: {icon}",

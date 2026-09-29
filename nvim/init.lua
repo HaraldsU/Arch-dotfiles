@@ -18,7 +18,7 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 vim.opt.colorcolumn = "80" -- Vertical line
-vim.opt.textwidth = 80
+-- vim.opt.textwidth = 80 -- Auto wraps at said width
 vim.opt.formatoptions:remove("c")
 vim.opt.formatprg = ""
 
@@ -29,11 +29,18 @@ vim.opt.cursorline = true
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 -- vim.opt.previewheight = 3
-vim.lsp.enable('pyright')
 vim.opt.statusline = '%F%<'
 vim.opt.maxsearchcount = 9999
 
+-- LSPs
+vim.lsp.enable('pyright')
+vim.lsp.enable('clangd')
+
+-- CMDs
 vim.cmd("au FileType qf resize 3")
+vim.cmd("command! W w")
+vim.cmd("command! Wq wq")
+vim.cmd("command! Wqall wqall")
 
 -- Folding
 vim.api.nvim_create_augroup('remember_folds', { clear = true })
