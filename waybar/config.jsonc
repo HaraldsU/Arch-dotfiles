@@ -76,8 +76,9 @@
 		"timezone": "Europe/Riga",
 		"tooltip": false,
 		// "format": "{:%H:%M:%S  -  %b, %a:%d}",
-		"format": "{:%H:%M:%S  -  %d.%m.%y  -  %A}",
-		"interval": 1
+		// "format": "{:%H:%M:%S  -  %d.%m.%y  -  %A}",
+		"format": "{:%d.%m.%y  -  %H:%M:%S  -  %A}",
+		"interval": 5
 	},
 
 	"network": {
