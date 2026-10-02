@@ -67,8 +67,9 @@
 	"clock": {
 		"timezone": "Europe/Riga",
 		"tooltip": false,
+		// "format": "{:%d.%m.%y  |  %H:%M:%S  |  %A}",
 		// "format": "{:%H:%M:%S  -  %d.%m.%y  -  %A}",
-		"format": "{:%d.%m.%y  |  %H:%M:%S  |  %A}",
+		"format": "{:%d.%m.%y  -  %H:%M:%S  -  %A}",
 		"interval": 5
 	},
 
