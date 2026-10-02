@@ -7,6 +7,7 @@
 	"modules-left": [
 		"hyprland/workspaces",
 		"custom/uptime",
+		// "memory"
 		"cpu"
 	],
 
@@ -23,22 +24,13 @@
 	// "custom/music",
 	],
 
-<<<<<<< HEAD
-	// "custom/weather": {
-	// 	"format": "{}",
-	// 	"interval": 600,
-	//	"exec": "curl -s 'wttr.in/Ogre?format=%t+%C+%uuv+%w+%S+%m+%s'",
-	//	"tooltip": false
-	// },
-=======
 	"custom/weather": {
 		"format": "{}",
 		"interval": 600,
 		// "exec": "curl -s 'wttr.in/Ogre?format=%t+%C+%uuv+%w+%S+%m+%s'",
-		"exec": "curl -s 'wttr.in/Ogre?format=%t+%C+%S+%m+%s'",
+		// "exec": "curl -s 'wttr.in/Ogre?format=%t+%C+%S+%m+%s'",
 		"tooltip": false
 	},
->>>>>>> 22b0533a4426aa0ddf730d465bc5e414a14e076e
 
 	"hyprland/workspaces": {
 		"format": "{name}: {icon}",
@@ -75,9 +67,9 @@
 	"clock": {
 		"timezone": "Europe/Riga",
 		"tooltip": false,
-		// "format": "{:%H:%M:%S  -  %b, %a:%d}",
-		"format": "{:%H:%M:%S  -  %d.%m.%y  -  %A}",
-		"interval": 1
+		// "format": "{:%H:%M:%S  -  %d.%m.%y  -  %A}",
+		"format": "{:%d.%m.%y  |  %H:%M:%S  |  %A}",
+		"interval": 5
 	},
 
 	"network": {
@@ -94,7 +86,7 @@
 		"interval": 1,
 		"format": "  {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
 		"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
-		"on-click": "ghostty -e htop"
+		"on-click": "kitty -e htop"
 	},
 
 	"memory": {

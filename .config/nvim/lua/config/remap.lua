@@ -59,3 +59,6 @@ vim.keymap.set("n", "<leader>nn", vim.cmd.NoNeckPain)
 vim.keymap.set("n", "<leader>n[", vim.cmd.NoNeckPainWidthUp)
 vim.keymap.set("n", "<leader>n]", vim.cmd.NoNeckPainWidthDown)
 
+-- Visual line selection end cursor at end position
+vim.keymap.set('x', 'y', 'y`>')
+

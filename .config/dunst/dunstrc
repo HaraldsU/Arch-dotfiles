@@ -498,3 +498,7 @@
 #    set_stack_tag = "volume"
 #
 # vim: ft=cfg
+
+[mute_discord]
+    appname = "discord"
+    format = ""
