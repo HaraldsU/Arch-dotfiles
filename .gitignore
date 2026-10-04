@@ -15,11 +15,14 @@
 
 !/.config/hypr/
 /.config/hypr/hyprland.conf
+/.config/hypr/custom.lua
 
 !/.config/cheat/
 /.config/cheat/cheatsheets/community
 
 !/.config/dunst/
 !/.config/kitty/
+
+!/.config/xkb/
 
 !.bashrc

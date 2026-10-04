@@ -1,0 +1,19 @@
+partial alphanumeric_keys modifier_keys
+xkb_symbols "apostrophe-deadquotes" {
+
+	include "lv(basic)"
+
+	name[Group1]= "Latvian (apostrophe, dead quotes)";
+
+	key <AC11> {
+		symbols[Group1] = [ ISO_Level3_Latch, ISO_Level3_Latch, apostrophe, quotedbl ],
+		actions[Group1] = [
+			LatchMods(modifiers=LevelThree, clearLocks, latchOnPress),
+			LatchMods(modifiers=LevelThree, clearLocks, latchOnPress),
+			NoAction(),
+			NoAction()
+		]
+	};
+	key <SPCE> {[space, space, apostrophe, quotedbl]};
+	modifier_map Mod5 { <AC11> };
+};

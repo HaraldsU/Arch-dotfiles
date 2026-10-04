@@ -15,19 +15,9 @@
 ------------------
 
 -- See https://wiki.hypr.land/configuring/core/monitors/
-hl.monitor({
-    output   = "DP-1",
-    mode     = "1920x1080@239.96",
-    position = "0x0",
-    scale    = "1",
-})
 
-hl.monitor({
-    output   = "HDMI-A-2",
-    mode     = "1920x1080@60",
-    position = "1920x0",
-    scale    = "auto",
-})
+-- Monitors and input
+require("custom")
 
 ---------------------
 ---- MY PROGRAMS ----
@@ -51,7 +41,7 @@ local menu = "wofi --show drun --allow-images --allow-markup --matching=contains
 hl.on("hyprland.start", function () 
 	hl.exec_cmd("mount -a")
 	hl.exec_cmd("waybar & hypridle & hyprpaper")
-	hl.exec_cmd('openrgb --startminimized --profile "No-Light"')
+	-- hl.exec_cmd('openrgb --startminimized --profile "No-Light"')
 	hl.exec_cmd('/usr/lib/polkit-kde-authentication-agent-1')
 	-- hl.exec_cmd("chameleos")
 	hl.exec_cmd("firefox", { workspace = "1 silent", fullscreen_state = "2 0" })
@@ -230,8 +220,8 @@ hl.config({
 
 hl.config({
     misc = {
-        force_default_wallpaper = 0,    -- Set to 0 or 1 to disable the anime mascot wallpapers
-        disable_hyprland_logo   = true, -- If true disables the random hyprland logo / anime girl background. :(
+        force_default_wallpaper = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
+        disable_hyprland_logo   = false, -- If true disables the random hyprland logo / anime girl background. :(
     },
 })
 
@@ -239,29 +229,6 @@ hl.config({
 ---------------
 ---- INPUT ----
 ---------------
-
-hl.config({
-    input = {
-        kb_layout  = "lv",
-        kb_variant = "apostrophe-deadquotes",
-        kb_model   = "",
-        kb_options = "grp:win_space_toggle,caps:escape,altwin:swap_alt_win",
-        kb_rules   = "",
-
-        follow_mouse = 1,
-
-        sensitivity = -0.35, -- -1.0 - 1.0, 0 means no modification.
-
-        touchpad = {
-            natural_scroll = false,
-        },
-
-		tablet = {
-			output = "DP-1",
-		},
-    },
-})
-
 hl.gesture({
     fingers = 3,
     direction = "horizontal",
