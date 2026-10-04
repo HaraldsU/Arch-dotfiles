@@ -1,5 +1,0 @@
-# Get the date diff between now and a future date
-datediff now yyyy-mm-dd
-
-# Get the total amount of hours between 2 dates
-datediff -i '%Y-%m-%d-%H:%M' -f '%H' now yyyy-mm-dd-H:MM
