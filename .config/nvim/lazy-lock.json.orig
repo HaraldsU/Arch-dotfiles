@@ -2,29 +2,17 @@
   "cmp-nvim-lsp": { "branch": "main", "commit": "cbc7b02bb99fae35cb42f514762b89b5126651ef" },
   "cmp-nvim-lsp-signature-help": { "branch": "main", "commit": "fd3e882e56956675c620898bf1ffcf4fcbe7ec84" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
-<<<<<<< HEAD
-  "nvim-cmp": { "branch": "main", "commit": "da88697d7f45d16852c6b2769dc52387d1ddc45f" },
-  "nvim-dap": { "branch": "master", "commit": "db321947bb289a2d4d76a32e76e4d2bd6103d7df" },
-  "nvim-dap-ui": { "branch": "master", "commit": "cf91d5e2d07c72903d052f5207511bf7ecdb7122" },
+  "no-neck-pain.nvim": { "branch": "main", "commit": "55f69b7ff536303dcd37460d7cbced9691b3f0a2" },
+  "nvim-cmp": { "branch": "main", "commit": "2ffe79f1f021def8dd1fcd81deb16f1bb0d989f3" },
+  "nvim-dap": { "branch": "master", "commit": "cfa2d58f4537aca6ca83e2de1a0d9f1491121264" },
+  "nvim-dap-ui": { "branch": "master", "commit": "cc9dd33aade7f20bae414d0cba163bc60d4d4b43" },
   "nvim-dap-virtual-text": { "branch": "master", "commit": "fbdb48c2ed45f4a8293d0d483f7730d24467ccb6" },
-  "nvim-lspconfig": { "branch": "master", "commit": "f4e9d367d4e067d7a5fabc9fd3f1349b291eb718" },
-=======
-  "no-neck-pain.nvim": { "branch": "main", "commit": "0df6659e25401c3f3c40e82f1ddd48714b1a659c" },
-  "nvim-cmp": { "branch": "main", "commit": "a1d504892f2bc56c2e79b65c6faded2fd21f3eca" },
-  "nvim-dap": { "branch": "master", "commit": "45a69eba683a2c448dd9ecfc4de89511f0646b5f" },
-  "nvim-dap-ui": { "branch": "master", "commit": "1a66cabaa4a4da0be107d5eda6d57242f0fe7e49" },
-  "nvim-dap-virtual-text": { "branch": "master", "commit": "fbdb48c2ed45f4a8293d0d483f7730d24467ccb6" },
-  "nvim-lspconfig": { "branch": "master", "commit": "b80f82f59544f0770981b5a6c7d129ca276dab36" },
->>>>>>> c0de3c3 (Many, many overdue changes)
-  "nvim-nio": { "branch": "master", "commit": "21f5324bfac14e22ba26553caf69ec76ae8a7662" },
-  "nvim-treesitter": { "branch": "main", "commit": "4916d6592ede8c07973490d9322f187e07dfefac" },
+  "nvim-lspconfig": { "branch": "master", "commit": "3e8d598d3b5f8338a41699c436e5fa11d2666cf0" },
+  "nvim-nio": { "branch": "master", "commit": "edcc181a875301dd21840189aa2f2f9ad69fc172" },
+  "nvim-treesitter": { "branch": "main", "commit": "e6be2ff65d89df5039cad7a422600757bbf81d02" },
+  "onedark.nvim": { "branch": "master", "commit": "df4792accde9db0043121f32628bcf8e645d9aea" },
   "plenary.nvim": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
-  "telescope.nvim": { "branch": "master", "commit": "471eebb1037899fd942cc0f52c012f8773505da1" },
+  "telescope.nvim": { "branch": "master", "commit": "40aedd8a68c78a656a10a8d62d80c54af59420fb" },
   "template.nvim": { "branch": "main", "commit": "308f6f8f0bf98cb7c71855ffa8a3019a5642d1cd" },
-  "tokyodark.nvim": { "branch": "master", "commit": "659aff3c73dc2e0159314050a81671f0b2eaad01" },
-<<<<<<< HEAD
-  "vimtex": { "branch": "master", "commit": "95b93a24740f7b89dd8331326b41bdd1337d79f6" }
-=======
-  "vimtex": { "branch": "master", "commit": "9306903316c3ddd250676b7cf97c84a84c9c8f99" }
->>>>>>> c0de3c3 (Many, many overdue changes)
+  "vimtex": { "branch": "master", "commit": "16a5609d17a436db7f48046d91747fd6a9d75c74" }
 }
