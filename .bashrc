@@ -26,10 +26,10 @@ alias gitl='git log --oneline --graph -10'
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.local/share/gem/ruby/3.4.0/bin:$PATH"
 export RUBYOPT="-W0"
-export EDITOR=nvim
 # export MANPAGER='nvim +Man!'
 
+export EDITOR=nvim
 set -o vi
 bind -m vi-insert '\C-l':clear-screen
 
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
