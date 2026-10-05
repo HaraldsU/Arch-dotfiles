@@ -16,8 +16,20 @@
 
 -- See https://wiki.hypr.land/configuring/core/monitors/
 
--- Monitors and input
+-- Custom monitors and input
 require("custom")
+
+hl.config({
+    input = { 
+		repeat_rate = 35,
+		repeat_delay = 225,
+	},
+	cursor = {
+		hide_on_key_press = true,
+		inactive_timeout = 3,
+	},
+})
+
 
 ---------------------
 ---- MY PROGRAMS ----
@@ -103,7 +115,7 @@ hl.config({
         gaps_in  = 5,
         gaps_out = 8,
 
-        border_size = 1,
+        border_size = 0,
 
         col = {
             active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
