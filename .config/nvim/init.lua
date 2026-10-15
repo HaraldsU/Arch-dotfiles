@@ -10,14 +10,19 @@ vim.opt.clipboard = "unnamedplus"
   -- signs = true,
   -- underline = true,
 -- })
-vim.opt.foldmethod = "manual"
+
+-- Folds
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevelstart = 99
+
 vim.opt.smartindent = true
 -- vim.opt.hlsearch = false
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
-vim.opt.colorcolumn = "80" -- Vertical line
+-- vim.opt.colorcolumn = "80" -- Vertical line
 -- vim.opt.textwidth = 80 -- Auto wraps at said width
 
 -- Tabs
@@ -32,7 +37,7 @@ vim.opt.listchars = {
 vim.opt.formatoptions:remove("c")
 vim.opt.formatprg = ""
 
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
 vim.opt.splitright = true
 
 -- Cursorline
@@ -62,6 +67,11 @@ vim.cmd("au FileType qf resize 3")
 vim.cmd("command! W w")
 vim.cmd("command! Wq wq")
 vim.cmd("command! Wqall wqall")
+vim.cmd("command! Q q")
+vim.cmd("command! Qall qall")
+
+-- 2 = fast directory browsing; only obtains directory listings when the directory hasn't been seen before
+vim.g.netrw_fastbrowse = 2
 
 -- Folding
 vim.api.nvim_create_augroup('remember_folds', { clear = true })
@@ -113,6 +123,13 @@ vim.keymap.set("n", "p", function()
 		vim.fn.cursor(0, col)
 	end
 end)
+
+-- Disable comment continuation with o and enter
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function()
+		vim.opt_local.formatoptions:remove({ "o", "r" })
+	end,
+})
 
 -- Buffer outline (list of functions, classes etc.)
 -- TO DO

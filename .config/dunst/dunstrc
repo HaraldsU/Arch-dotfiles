@@ -502,3 +502,9 @@
 [mute_discord]
     appname = "discord"
     format = ""
+
+[mute_networkmanager]
+   # appname = "nm-applet"
+   appname = "NetworkManager Applet"
+   format = ""
+
