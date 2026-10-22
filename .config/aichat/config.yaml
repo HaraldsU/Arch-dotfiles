@@ -1,18 +1,39 @@
 # see https://github.com/sigoden/aichat/blob/main/config.example.yaml
+# No API key here ;)
 
-model: openrouter:moonshotai/kimi-k3
+# model: openrouter:nousresearch/hermes-4-405b
+# model: openrouter:z-ai/glm-5.3-flash
+# model: openrouter:moonshotai/kimi-k3
+# model: openrouter:deepseek/deepseek-v4.1-flash
+model: openrouter:z-ai/glm-5.1
 clients:
-- type: openai-compatible
-  name: openrouter
-  api_base: https://openrouter.ai/api/v1
-  models:
-  - name: moonshotai/kimi-k3
-  - name: deepseek/deepseek-v4.1-flash
-  - name: qwen/qwen3.8-max-0902
-  - name: x-ai/grok-4.7
-  - name: z-ai/glm-5.3
-  - name: xiaomi/mimo-v2.6-pro
-  - name: anthropic/claude-sonnet-5.5
-  - name: anthropic/claude-opus-5.5
-  - name: anthropic/claude-haiku-5.5
-
+  - type: openai-compatible
+    name: openrouter
+    api_base: https://openrouter.ai/api/v1
+    models: 
+      - name: z-ai/glm-5.1
+      - name: moonshotai/kimi-k3
+      - name: thedrummer/cydonia-24b-v4.1
+      - name: nousresearch/hermes-4-405b
+      - name: deepseek/deepseek-v4.1-flash
+      - name: deepseek/deepseek-v4-pro-0813
+      - name: qwen/qwen3.8-max-0902
+      - name: x-ai/grok-4.7
+      - name: z-ai/glm-5.3
+      - name: z-ai/glm-5.3-flash
+      - name: z-ai/glm-5.2
+      - name: xiaomi/mimo-v2.6-pro
+      - name: anthropic/claude-sonnet-5.5
+      - name: anthropic/claude-opus-5.5
+      - name: anthropic/claude-haiku-5.5
+    patch:                                          # Patch api
+      chat_completions:                             # Api type, possible values: chat_completions, embeddings, and rerank
+        'z-ai/glm-5.3-flash':                             # The regex to match model names, e.g. '.*' 'gpt-4o' 'gpt-4o|gpt-4-.*'
+          # url: ''                                   # Patch request url
+          body:                                     # Patch request body
+            provider:
+              only: ["venice"]
+              allow_fallbacks: false
+            # <json>
+          # headers:                                  # Patch request headers
+            # <key>: <value>
