@@ -55,7 +55,13 @@ vim.keymap.set('v', '<leader>c', ':s/^\\(\\s*\\)print/\\1# print/g<CR>', { desc 
 vim.keymap.set('v', '<leader>u', ':s/^\\(\\s*\\)# print/\\1print/g<CR>', { desc = 'Uncomment prints (selection)' })
 
 -- NoNeckPain
-vim.keymap.set("n", "<leader>nn", vim.cmd.NoNeckPain)
+vim.keymap.set("n", "<leader>nn", function()
+    local nnp = require("no-neck-pain")
+    if not (_G.NoNeckPain.state and _G.NoNeckPain.state.enabled) then
+        nnp.enable("keymap")
+    end
+    nnp.resize(85)
+end)
 vim.keymap.set("n", "<leader>n[", vim.cmd.NoNeckPainWidthUp)
 vim.keymap.set("n", "<leader>n]", vim.cmd.NoNeckPainWidthDown)
 

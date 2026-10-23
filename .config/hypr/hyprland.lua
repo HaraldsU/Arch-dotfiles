@@ -273,7 +273,8 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 -- hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({mode = "fullscreen"}))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
-hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("HYPRSHOT_DELAY=1000 hyprshot -m region --freeze --clipboard-only"))
+-- hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("hyprshot -m region --freeze --clipboard-only"))
+hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("grim - | satty --filename - --copy-command wl-copy --early-exit"))
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
 
 -- Move focus with mainMod + arrow keys

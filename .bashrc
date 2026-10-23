@@ -7,7 +7,7 @@
 
 # PS1='[\u@\h \W]\$ '
 # PS1='[\u \W]-> '
-PS1='[\u \W]\$ '
+PS1='\e[31m[\e[33m\u \e[31m\W]\e[33m \$\e[0m '
 
 # Alias
 alias ls='ls --color=auto'
@@ -22,6 +22,11 @@ alias vim='nvim'
 alias ivm='nvim'
 alias vimdiff='nvim -d'
 alias cale='cal -3wm'
+# alias tldr='tldr --color=always'
+
+t () {
+	tldr $1 --color=always | less -R
+}
 
 # Git
 alias gits='git status -s'
