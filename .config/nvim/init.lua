@@ -37,6 +37,24 @@ vim.opt.listchars = {
 vim.opt.formatoptions:remove("c")
 vim.opt.formatprg = ""
 
+-- Make shenanigans
+vim.opt.makeprg = "g++ -Wall -Wextra % -o %<"
+
+vim.api.nvim_create_user_command("Make", function(opts)
+	local start = vim.uv.hrtime()
+	vim.cmd("silent update | silent make " .. opts.args)
+	local elapsed = (vim.uv.hrtime() - start) / 1e9
+
+	if #vim.fn.getqflist() == 0 then
+		vim.cmd("cclose")   -- close the leftover error window, if any
+		vim.cmd("redraw")   -- otherwise the message can be wiped by the redraw after :silent make
+		vim.notify(string.format("Build succeeded in %.2fs", elapsed))
+	else
+		vim.cmd("botright copen 12")   -- open the window if needed and move the cursor into it
+	end
+end, { nargs = "*" })
+-- vim.api.nvim_create_user_command("Make", "silent update | silent make <args>", { nargs = "*" })
+
 vim.opt.scrolloff = 5
 vim.opt.splitright = true
 
@@ -63,7 +81,7 @@ vim.lsp.enable('clangd')
 vim.treesitter.language.register("json", "jsonc")
 
 -- CMDs
-vim.cmd("au FileType qf resize 3")
+-- vim.cmd("au FileType qf resize 3")
 vim.cmd("command! W w")
 vim.cmd("command! Wq wq")
 vim.cmd("command! Wqall wqall")
