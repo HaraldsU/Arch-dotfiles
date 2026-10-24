@@ -22,7 +22,9 @@ alias cdo='cd /mnt/nvme0n1p3/Users/11rem/Documents/Obsidian_Vault/Kursi/'
 alias vim='nvim'
 alias ivm='nvim'
 alias vimdiff='nvim -d'
-alias cale='cal -3wm' # alias tldr='tldr --color=always'
+alias cale='cal -3wm' 
+
+# alias tldr='tldr --color=always'
 t () {
 	tldr $1 --color=always | less -R
 }
@@ -59,13 +61,32 @@ export LESS_TERMCAP_ZV=$'\e[75m'
 export LESS_TERMCAP_ZO=$'\e[73m'
 export LESS_TERMCAP_ZW=$'\e[75m'
 
+hsv_to_rgb() {
+	awk -v h="$1" -v s="$2" -v v="$3" 'BEGIN {
+		s /= 100; v /= 100
+		c  = v * s
+		hp = (h % 360) / 60
+		d  = hp % 2 - 1; if (d < 0) d = -d
+		x  = c * (1 - d)
+		if      (hp < 1) { r=c; g=x; b=0 }
+		else if (hp < 2) { r=x; g=c; b=0 }
+		else if (hp < 3) { r=0; g=c; b=x }
+		else if (hp < 4) { r=0; g=x; b=c }
+		else if (hp < 5) { r=x; g=0; b=c }
+		else             { r=c; g=0; b=x }
+			m = v - c
+			printf "%d %d %d\n", (r+m)*255+0.5, (g+m)*255+0.5, (b+m)*255+0.5
+		}'
+}
+
 truecolor-rainbow() {
+	local saturation=100
+	local value=100
+	local width=77
 	local i r g b
-	for ((i = 0; i < 77; i++)); do
-		r=$((255 - (i * 255 / 76)))
-		g=$((i * 510 / 76))
-		b=$((i * 255 / 76))
-		((g > 255)) && g=$((510 - g))
+	for ((i = 0; i < width; i++)); do
+		local hue=$(awk -v i="$i" -v w="$width" 'BEGIN { print i / w * 300 }')
+		read -r r g b < <(hsv_to_rgb "$hue" "$saturation" "$value")
 		printf '\033[48;2;%d;%d;%dm ' "$r" "$g" "$b"
 	done
 	printf '\e[0m\n'
