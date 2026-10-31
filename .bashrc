@@ -7,8 +7,7 @@
 
 # PS1='[\u@\h \W]\$ '
 # PS1='[\u \W]-> '
-# PS1='\e[31m[\e[33m\u \e[31m\W]\e[33m \$\e[0m '
-PS1='\e[35m[\e[34m\u \e[35m\W]\e[34m \$\e[0m '
+PS1='\[\e[35m\][\[\e[34m\]\u \[\e[35m\]\W]\[\e[34m\] \$\[\e[0m\] '
 
 # Alias
 alias ls='ls --color=auto'
@@ -32,6 +31,21 @@ t () {
 # Git
 alias gits='git status -s'
 alias gitl='git log --oneline --all --graph -10'
+alias gitf='git fetch -a'
+alias gitr='git remote show origin'
+
+# fzf
+fzfd () {
+	fzf --walker=dir --walker-root=$1
+}
+
+fzfn () {
+	rg -l -i -- "$1" ~ 2>/dev/null | FZFN_PAT="$1" fzf --preview 'rg --color=always -n -i -- "$FZFN_PAT" {}'
+}
+
+fzff () {
+	find $1 -type f | fzf
+}
 
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.local/share/gem/ruby/3.4.0/bin:$PATH"
@@ -43,6 +57,8 @@ export SUDO_EDITOR=nvim
 set -o vi
 bind -m vi-insert '\C-l':clear-screen
 
+stty -ixon
+
 # Taken from https://github.com/bahamas10/dotfiles/blob/master/bashrc
 
 # Support colors in less
@@ -51,15 +67,15 @@ export LESS_TERMCAP_mb=$'\e[1;31m'
 export LESS_TERMCAP_md=$'\e[1;31m'
 export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[1;33;44m'
+# export LESS_TERMCAP_so=$'\e[1;33;44m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[4;1;32m'
 export LESS_TERMCAP_mr=$'\e[7m'
 export LESS_TERMCAP_mh=$'\e[2m'
-export LESS_TERMCAP_ZN=$'\e[74m'
-export LESS_TERMCAP_ZV=$'\e[75m'
-export LESS_TERMCAP_ZO=$'\e[73m'
-export LESS_TERMCAP_ZW=$'\e[75m'
+# export LESS_TERMCAP_ZN=$'\e[74m'
+# export LESS_TERMCAP_ZV=$'\e[75m'
+# export LESS_TERMCAP_ZO=$'\e[73m'
+# export LESS_TERMCAP_ZW=$'\e[75m'
 
 hsv_to_rgb() {
 	awk -v h="$1" -v s="$2" -v v="$3" 'BEGIN {

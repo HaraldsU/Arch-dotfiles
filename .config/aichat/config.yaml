@@ -21,20 +21,18 @@ clients:
       - name: qwen/qwen3.8-max-0902
       - name: x-ai/grok-4.7
       - name: z-ai/glm-5.3
+        # supports_function_calling: true
       - name: z-ai/glm-5.3-flash
       - name: z-ai/glm-5.2
       - name: xiaomi/mimo-v2.6-pro
       - name: anthropic/claude-sonnet-5.5
       - name: anthropic/claude-opus-5.5
       - name: anthropic/claude-haiku-5.5
-    patch:                                          # Patch api
-      chat_completions:                             # Api type, possible values: chat_completions, embeddings, and rerank
-        'z-ai/glm-5.3-flash':                             # The regex to match model names, e.g. '.*' 'gpt-4o' 'gpt-4o|gpt-4-.*'
-          # url: ''                                   # Patch request url
-          body:                                     # Patch request body
-            provider:
-              only: ["venice"]
-              allow_fallbacks: false
-            # <json>
-          # headers:                                  # Patch request headers
-            # <key>: <value>
+    patch:
+     chat_completions:
+       '.*':
+         body:
+           tools:
+             - type: web_search
+               web_search:
+                 enable: true
