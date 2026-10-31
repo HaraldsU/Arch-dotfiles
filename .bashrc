@@ -25,7 +25,7 @@ alias cale='cal -3wm'
 
 # alias tldr='tldr --color=always'
 t () {
-	tldr $1 --color=always | less -R
+	tldr $1 $2 --color=always | less -R
 }
 
 # Git
