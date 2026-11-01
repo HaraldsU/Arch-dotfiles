@@ -28,11 +28,13 @@ vim.opt.termguicolors = true
 -- Tabs
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+
 vim.opt.list = true
-vim.opt.listchars = {
-	leadmultispace = "┊   ",
-	tab = "┊ ",
-}
+vim.opt.listchars = { trail = "·", tab = "  " }
+-- vim.opt.listchars = {
+-- 	leadmultispace = "┊   ",
+-- 	tab = "┊ ",
+-- }
 
 vim.opt.formatoptions:remove("c")
 vim.opt.formatprg = ""
