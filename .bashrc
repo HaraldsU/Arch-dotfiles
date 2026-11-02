@@ -33,6 +33,8 @@ alias gits='git status -s'
 alias gitl='git log --oneline --all --graph -10'
 alias gitf='git fetch -a'
 alias gitr='git remote show origin'
+alias gita='git add .'
+alias gitc='git commit -v'
 
 # fzf
 fzfd () {

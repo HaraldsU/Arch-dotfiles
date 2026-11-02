@@ -11,14 +11,9 @@ vim.opt.clipboard = "unnamedplus"
   -- underline = true,
 -- })
 
--- Folds
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldlevelstart = 99
-
 vim.opt.smartindent = true
--- vim.opt.hlsearch = false
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false
+-- vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
@@ -94,6 +89,11 @@ vim.cmd("command! Qall qall")
 vim.g.netrw_fastbrowse = 2
 
 -- Folding
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldmethod = "expr"
+-- vim.opt.foldlevel = 0
+vim.opt.foldlevelstart = 0
+
 vim.api.nvim_create_augroup('remember_folds', { clear = true })
 
 vim.api.nvim_create_autocmd('BufWinLeave', {
@@ -105,7 +105,7 @@ vim.api.nvim_create_autocmd('BufWinLeave', {
         end
     end
 })
- 
+
 vim.api.nvim_create_autocmd('BufWinEnter', {
     group = 'remember_folds',
     pattern = '*',
