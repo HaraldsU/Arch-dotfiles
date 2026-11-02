@@ -22,6 +22,12 @@ alias vim='nvim'
 alias ivm='nvim'
 alias vimdiff='nvim -d'
 alias cale='cal -3wm' 
+alias m='man'
+alias f='flag'
+
+psg () {
+	ps aux | grep -i -- $1
+}
 
 # alias tldr='tldr --color=always'
 t () {
