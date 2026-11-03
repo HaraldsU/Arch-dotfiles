@@ -23,7 +23,9 @@ alias ivm='nvim'
 alias vimdiff='nvim -d'
 alias cale='cal -3wm' 
 alias m='man'
+alias flag='flag --enclose="[]" --color="auto"'
 alias f='flag'
+alias diff='diff --color=auto'
 
 psg () {
 	ps aux | grep -i -- $1
@@ -32,6 +34,30 @@ psg () {
 # alias tldr='tldr --color=always'
 t () {
 	tldr $1 $2 --color=always | less -R
+}
+
+dgs_flag_sort () {
+	echo "flag -d '\n' $1"
+	echo "flag -sd '\n' $1"
+	echo "Default: " ; flag -d '\n' $1 | wc
+	echo "Sorted" ; flag -sd '\n' $1 | wc
+	if [ -n "$2" ]; then
+		diff --side-by-side <(flag -d '\n' $1 | sort) <(flag -sd '\n' $1 | sort)
+	else
+		diff <(flag -d '\n' $1 | sort) <(flag -sd '\n' $1 | sort)
+	fi
+}
+
+dgl_flag_sort () {
+	echo "flag -ld '\n' $1"
+	echo "flag -lsd '\n' $1"
+	echo "Default: " ; flag -ld '\n' $1 | wc
+	echo "Sorted" ; flag -lsd '\n' $1 | wc
+	if [ -n "$2" ]; then
+		diff --side-by-side <(flag -ld '\n' $1 | sort) <(flag -lsd '\n' $1 | sort)
+	else
+		diff <(flag -ld '\n' $1 | sort) <(flag -lsd '\n' $1 | sort)
+	fi
 }
 
 # Git

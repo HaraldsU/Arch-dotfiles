@@ -1,7 +1,8 @@
 # see https://github.com/sigoden/aichat/blob/main/config.example.yaml
 # No API key here ;)
 
-mode: openrouter:z-ai/glm-5.3
+# mode: openrouter:z-ai/glm-5.3
+mode: openai/gpt-4.1-nano
 # model: openrouter:nousresearch/hermes-4-405b
 # model: openrouter:z-ai/glm-5.3-flash
 # model: openrouter:moonshotai/kimi-k3
@@ -12,6 +13,7 @@ clients:
     name: openrouter
     api_base: https://openrouter.ai/api/v1
     models: 
+      - name: gpt-4.1-nano
       - name: z-ai/glm-5.1
       - name: moonshotai/kimi-k3
       - name: thedrummer/cydonia-24b-v4.1

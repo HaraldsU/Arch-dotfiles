@@ -2,18 +2,11 @@ require("config")
 
 vim.opt.number = true
 vim.opt.relativenumber = true
--- vim.opt.autoindent = true
 vim.opt.mouse = "a"
 vim.opt.clipboard = "unnamedplus"
--- vim.diagnostic.config({
-  -- virtual_text = true,
-  -- signs = true,
-  -- underline = true,
--- })
 
 vim.opt.smartindent = true
 vim.opt.hlsearch = false
--- vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
@@ -23,9 +16,13 @@ vim.opt.termguicolors = true
 -- Tabs
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 
 vim.opt.list = true
-vim.opt.listchars = { trail = "·", tab = "  " }
+vim.api.nvim_set_hl(0, "Whitespace", { fg = "#0F0F0F" })
+-- vim.api.nvim_set_hl(0, "Whitespace", { fg = "#FFFFFF" })
+vim.opt.listchars = { trail = "·", lead = "·", tab = "  " }
+
 -- vim.opt.listchars = {
 -- 	leadmultispace = "┊   ",
 -- 	tab = "┊ ",
@@ -35,7 +32,7 @@ vim.opt.formatoptions:remove("c")
 vim.opt.formatprg = ""
 
 -- Make shenanigans
-vim.opt.makeprg = "g++ -Wall -Wextra % -o %<"
+vim.opt.makeprg = "clang++ -Wall -Wextra % -o %<"
 
 vim.api.nvim_create_user_command("Make", function(opts)
 	local start = vim.uv.hrtime()
@@ -50,7 +47,6 @@ vim.api.nvim_create_user_command("Make", function(opts)
 		vim.cmd("botright copen 12")   -- open the window if needed and move the cursor into it
 	end
 end, { nargs = "*" })
--- vim.api.nvim_create_user_command("Make", "silent update | silent make <args>", { nargs = "*" })
 
 vim.opt.scrolloff = 5
 vim.opt.splitright = true
@@ -65,8 +61,6 @@ vim.opt.cursorlineopt = "number"
 vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.breakindent = true
--- vim.opt.previewheight = 3
--- vim.opt.statusline = '%f%<'
 vim.o.statusline = "%<%f %h%w%m%r%=%-14.(%l,%c%V%) %p%%"
 vim.opt.maxsearchcount = 9999
 
@@ -89,31 +83,16 @@ vim.cmd("command! Qall qall")
 vim.g.netrw_fastbrowse = 2
 
 -- Folding
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldmethod = "expr"
--- vim.opt.foldlevel = 0
-vim.opt.foldlevelstart = 0
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
 
-vim.api.nvim_create_augroup('remember_folds', { clear = true })
-
-vim.api.nvim_create_autocmd('BufWinLeave', {
-    group = 'remember_folds',
-    pattern = '*',
-    callback = function()
-        if vim.fn.expand('%') ~= '' and vim.bo.filetype ~= 'netrw' then
-            vim.cmd('mkview')
-        end
-    end
-})
-
-vim.api.nvim_create_autocmd('BufWinEnter', {
-    group = 'remember_folds',
-    pattern = '*',
-    callback = function()
-        if vim.fn.expand('%') ~= '' and vim.bo.filetype ~= 'netrw' then
-            vim.cmd('silent! loadview')
-        end
-    end
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function()
+		if pcall(vim.treesitter.start) then
+			vim.opt_local.foldmethod = "expr"
+			vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+		end
+	end,
 })
 
 -- Make a 1-1 terminal layout
@@ -153,3 +132,4 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Buffer outline (list of functions, classes etc.)
 -- TO DO
+
