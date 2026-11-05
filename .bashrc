@@ -23,7 +23,7 @@ alias ivm='nvim'
 alias vimdiff='nvim -d'
 alias cale='cal -3wm' 
 alias m='man'
-alias flag='flag --enclose="[]" --color="auto"'
+alias flag='flag'
 alias f='flag'
 alias diff='diff --color=auto'
 

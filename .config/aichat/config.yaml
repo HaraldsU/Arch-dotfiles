@@ -1,13 +1,7 @@
 # see https://github.com/sigoden/aichat/blob/main/config.example.yaml
 # No API key here ;)
 
-# mode: openrouter:z-ai/glm-5.3
-mode: openai/gpt-4.1-nano
-# model: openrouter:nousresearch/hermes-4-405b
-# model: openrouter:z-ai/glm-5.3-flash
-# model: openrouter:moonshotai/kimi-k3
-# model: openrouter:deepseek/deepseek-v4.1-flash
-# model: openrouter:z-ai/glm-5.1
+model: openrouter:z-ai/glm-5.3
 clients:
   - type: openai-compatible
     name: openrouter
@@ -23,7 +17,6 @@ clients:
       - name: qwen/qwen3.8-max-0902
       - name: x-ai/grok-4.7
       - name: z-ai/glm-5.3
-        # supports_function_calling: true
       - name: z-ai/glm-5.3-flash
       - name: z-ai/glm-5.2
       - name: xiaomi/mimo-v2.6-pro
