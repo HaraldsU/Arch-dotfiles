@@ -2,6 +2,10 @@ require("config")
 
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.g.loaded_matchparen = nil
+vim.cmd("runtime plugin/matchparen.vim")
+
+-- vim.opt.autoindent = true
 vim.opt.mouse = "a"
 vim.opt.clipboard = "unnamedplus"
 
@@ -9,6 +13,8 @@ vim.opt.smartindent = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
+
+vim.api.nvim_set_hl(0, "MatchParen", { fg = "#fabd2f", bg = "#504945", bold = true })
 
 -- vim.opt.colorcolumn = "80" -- Vertical line
 -- vim.opt.textwidth = 80 -- Auto wraps at said width
