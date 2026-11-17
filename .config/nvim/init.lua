@@ -11,6 +11,7 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 -- vim.opt.colorcolumn = "80" -- Vertical line
+vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#0F0F0F" })
 -- vim.opt.textwidth = 80 -- Auto wraps at said width
 
 -- Tabs
@@ -69,7 +70,15 @@ vim.lsp.enable('pyright')
 vim.lsp.enable('clangd')
 
 -- Treesitter
-vim.treesitter.language.register("json", "jsonc")
+vim.api.nvim_create_autocmd('FileType', {
+    callback = function(args)
+        -- skip filetypes whose treesitter grammar is broken
+        if vim.bo[args.buf].filetype == 'proto' then
+            return
+        end
+        pcall(vim.treesitter.start, args.buf)
+    end,
+})
 
 -- CMDs
 -- vim.cmd("au FileType qf resize 3")
@@ -84,7 +93,7 @@ vim.g.netrw_fastbrowse = 2
 
 -- Folding
 vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
+vim.opt.foldlevelstart = 0
 
 vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
