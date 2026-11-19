@@ -1,8 +1,10 @@
 /*
 !.gitignore
 !/.config/
+
 # Ignore all in .config so I can selectively choose what I don't want ignored
 /.config/* 
+
 # Ignore all environment files
 .env
 
@@ -15,6 +17,7 @@
 !/.config/qt5ct/
 !/.config/qt6ct/
 !/.config/nvim/
+!/.config/tmux/
 
 !/.config/hypr/
 /.config/hypr/hyprland.conf

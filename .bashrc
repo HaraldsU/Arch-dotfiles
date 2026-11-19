@@ -5,9 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# PS1='[\u@\h \W]\$ '
-# PS1='[\u \W]-> '
-PS1='\[\e[35m\][\[\e[34m\]\u \[\e[35m\]\W]\[\e[34m\] \$\[\e[0m\] '
+PS1='\[\e[35m\][\[\e[34m\]\u \[\e[35m\]\w]\[\e[34m\] \$\[\e[0m\] '
+# PS1='\[\e[34m\$\]\[\e[0m\] '
 
 # Alias
 alias ls='ls --color=auto'
@@ -18,20 +17,57 @@ alias l='clear ; ls -AF'
 alias grep='grep --color=auto'
 alias obsidian='obsidian --ozone-platform-hint=auto'
 alias cdo='cd /mnt/nvme0n1p3/Users/11rem/Documents/Obsidian_Vault/Kursi/'
+
 alias vim='nvim'
 alias ivm='nvim'
 alias vimdiff='nvim -d'
+
 alias cale='cal -3wm' 
 alias m='man'
-alias flag='flag'
-alias f='flag'
 alias diff='diff --color=auto'
+
+alias flag='flag --pretty -c 2 -rS'
+alias f='flag'
+
+# Git
+alias gits='git status -s'
+alias gitl='git log --oneline --all --graph -10'
+alias gitf='git fetch -a'
+alias gitr='git remote show origin'
+alias gita='git add .'
+alias gitc='git commit -v'
+
+# --- ENV ---
+export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.local/share/gem/ruby/3.4.0/bin:$PATH"
+export RUBYOPT="-W0"
+export PROMPT_DIRTRIM=2
+export MANWIDTH=100
+
+# Vim/Nvim
+export EDITOR=nvim
+export SUDO_EDITOR=nvim
+set -o vi
+bind -m vi-insert '\C-l':clear-screen
+
+stty -ixon
+
+# Taken from https://github.com/bahamas10/dotfiles/blob/master/bashrc
+# Support colors in less
+export MANROFFOPT="-c"
+export LESS_TERMCAP_mb=$'\e[1;31m'
+export LESS_TERMCAP_md=$'\e[1;31m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[4;1;32m'
+export LESS_TERMCAP_mr=$'\e[7m'
+export LESS_TERMCAP_mh=$'\e[2m'
 
 psg () {
 	ps aux | grep -i -- $1
 }
 
-# alias tldr='tldr --color=always'
 t () {
 	tldr $1 $2 --color=always | less -R
 }
@@ -60,56 +96,29 @@ dgl_flag_sort () {
 	fi
 }
 
-# Git
-alias gits='git status -s'
-alias gitl='git log --oneline --all --graph -10'
-alias gitf='git fetch -a'
-alias gitr='git remote show origin'
-alias gita='git add .'
-alias gitc='git commit -v'
 
-# fzf
+# find directories
 fzfd () {
 	fzf --walker=dir --walker-root=$1
 }
 
+# find by file content: fzfn [DIR] [PATTERN]
 fzfn () {
-	rg -l -i -- "$1" ~ 2>/dev/null | FZFN_PAT="$1" fzf --preview 'rg --color=always -n -i -- "$FZFN_PAT" {}'
+	local dir="${1:-$HOME}"
+	local rg_cmd="rg --column --line-number --no-heading --color=always -i --"
+	fzf --ansi --disabled --query "$2" \
+		--bind "start:reload:$rg_cmd {q} '$dir' 2>/dev/null || true" \
+		--bind "change:reload:sleep 0.1; $rg_cmd {q} '$dir' 2>/dev/null || true" \
+		--delimiter : \
+		--preview 'bat --color=always {1} --highlight-line {2}' \
+		--preview-window 'up,60%,border-bottom,+{2}+3/3' \
+		--bind 'enter:become(nvim {1} +{2})'
 }
 
+# find files
 fzff () {
 	find $1 -type f | fzf
 }
-
-export PATH="$HOME/go/bin:$PATH"
-export PATH="$HOME/.local/share/gem/ruby/3.4.0/bin:$PATH"
-export RUBYOPT="-W0"
-
-# Vim/Nvim
-export EDITOR=nvim
-export SUDO_EDITOR=nvim
-set -o vi
-bind -m vi-insert '\C-l':clear-screen
-
-stty -ixon
-
-# Taken from https://github.com/bahamas10/dotfiles/blob/master/bashrc
-
-# Support colors in less
-export MANROFFOPT="-c"
-export LESS_TERMCAP_mb=$'\e[1;31m'
-export LESS_TERMCAP_md=$'\e[1;31m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-# export LESS_TERMCAP_so=$'\e[1;33;44m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[4;1;32m'
-export LESS_TERMCAP_mr=$'\e[7m'
-export LESS_TERMCAP_mh=$'\e[2m'
-# export LESS_TERMCAP_ZN=$'\e[74m'
-# export LESS_TERMCAP_ZV=$'\e[75m'
-# export LESS_TERMCAP_ZO=$'\e[73m'
-# export LESS_TERMCAP_ZW=$'\e[75m'
 
 hsv_to_rgb() {
 	awk -v h="$1" -v s="$2" -v v="$3" 'BEGIN {
@@ -143,3 +152,6 @@ truecolor-rainbow() {
 }
 
 eval "$(zoxide init bash)"
+
+# Created by `pipx` on 2026-11-15 21:55:22
+export PATH="$PATH:/home/dust/.local/bin"
