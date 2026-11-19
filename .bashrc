@@ -26,7 +26,7 @@ alias cale='cal -3wm'
 alias m='man'
 alias diff='diff --color=auto'
 
-alias flag='flag'
+alias flag='flag --pretty -c 2 -rS'
 alias f='flag'
 
 # Git
