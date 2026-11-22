@@ -16,7 +16,6 @@ alias l='clear ; ls -AF'
 
 alias grep='grep --color=auto'
 alias obsidian='obsidian --ozone-platform-hint=auto'
-alias cdo='cd /mnt/nvme0n1p3/Users/11rem/Documents/Obsidian_Vault/Kursi/'
 
 alias vim='nvim'
 alias ivm='nvim'

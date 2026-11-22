@@ -1,79 +1,64 @@
 require("config")
 
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.g.loaded_matchparen = nil
+vim.g.loaded_matchparen = nil -- Custom plugin for also matching parentheses in strings
 vim.cmd("runtime plugin/matchparen.vim")
-
--- vim.opt.autoindent = true
-vim.opt.mouse = "a"
-vim.opt.clipboard = "unnamedplus"
-
-vim.opt.smartindent = true
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
-vim.opt.termguicolors = true
-
 vim.api.nvim_set_hl(0, "MatchParen", { fg = "#fabd2f", bg = "#504945", bold = true })
 
+vim.o.number         = true
+vim.o.relativenumber = true
+
+vim.o.mouse = "a" -- [a] all previous modes
+vim.o.clipboard = "unnamedplus" -- A variant of the "unnamed" flag which uses the clipboard register "+"
+
+vim.o.smartindent = true
+vim.o.autoindent  = true -- Copy indent from current line when starting a new line
+
+vim.o.hlsearch       = false
+vim.o.incsearch      = true
+vim.o.termguicolors  = true
+vim.o.maxsearchcount = 9999
+
+-- vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#0F0F0F" })
 -- vim.opt.colorcolumn = "80" -- Vertical line
-vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#0F0F0F" })
 -- vim.opt.textwidth = 80 -- Auto wraps at said width
 
--- Tabs
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+-- Tabs and spaces
+vim.o.expandtab  = true
+vim.o.tabstop    = 4 -- Defines the column multiple used to display the Horizontal Tab character (ASCII 9);
+vim.o.shiftwidth = 4 -- Number of columns that make up one level of (auto)indentation.
 
-vim.opt.list = true
-vim.api.nvim_set_hl(0, "Whitespace", { fg = "#0F0F0F" })
--- vim.api.nvim_set_hl(0, "Whitespace", { fg = "#FFFFFF" })
-vim.opt.listchars = { trail = "·", lead = "·", tab = "  " }
+vim.o.list = true
+vim.api.nvim_set_hl(0, "Whitespace", { fg = "#2F2F2F" })
+vim.opt.listchars = { trail = "·", lead = "·" }
 
--- vim.opt.listchars = {
--- 	leadmultispace = "┊   ",
--- 	tab = "┊ ",
--- }
+-- vim.opt.formatoptions:remove("c")
+-- vim.o.formatprg = ""
 
-vim.opt.formatoptions:remove("c")
-vim.opt.formatprg = ""
+-- Folding
+vim.o.foldcolumn = "4" -- This will show a small column on the left of the window to indicate folds
+vim.o.foldmethod = "manual"
+vim.o.foldlevel  = 0;
+vim.api.nvim_set_hl(0, "Folded", { bg = '', fg = 'brown' })
 
 -- Make shenanigans
 -- vim.opt.makeprg = "clang++ -Wall -Wextra % -o %<"
 
--- vim.api.nvim_create_user_command("Make", function(opts)
--- 	local start = vim.uv.hrtime()
--- 	vim.cmd("silent update | silent make " .. opts.args)
--- 	local elapsed = (vim.uv.hrtime() - start) / 1e9
--- 
--- 	if #vim.fn.getqflist() == 0 then
--- 		vim.cmd("cclose")   -- close the leftover error window, if any
--- 		vim.cmd("redraw")   -- otherwise the message can be wiped by the redraw after :silent make
--- 		vim.notify(string.format("Build succeeded in %.2fs", elapsed))
--- 	else
--- 		vim.cmd("botright copen 12")   -- open the window if needed and move the cursor into it
--- 	end
--- end, { nargs = "*" })
+vim.o.scrolloff  = 6
+vim.o.splitright = true
 
-vim.opt.scrolloff = 5
-vim.opt.splitright = true
+vim.o.cursorline    = true
+vim.o.cursorlineopt = "number"
 
--- Cursorline
-vim.opt.cursorline = true
-vim.opt.cursorlineopt = "number"
--- vim.opt.cursorlineopt = "line"
--- vim.opt.cursorlineopt = "screenline"
--- vim.opt.cursorlineopt = "both"
+vim.o.wrap        = true
+vim.o.linebreak   = true -- Vim will wrap long lines at a character in 'breakat' rather than at the last character that fits on the screen.
+vim.o.breakindent = true
 
-vim.opt.wrap = true
-vim.opt.linebreak = true
-vim.opt.breakindent = true
 vim.o.statusline = "%<%f %h%w%m%r%=%-14.(%l,%c%V%) %p%%"
-vim.opt.maxsearchcount = 9999
 
 -- LSPs
-vim.lsp.enable('pyright')
-vim.lsp.enable('clangd')
+vim.lsp.enable('pyright') -- Python
+vim.lsp.enable('clangd')  -- C++
+vim.lsp.enable('lua_ls')  -- Lua
 
 -- Treesitter
 vim.api.nvim_create_autocmd('FileType', {
@@ -95,54 +80,41 @@ vim.cmd("command! Q q")
 vim.cmd("command! Qall qall")
 
 -- 2 = fast directory browsing; only obtains directory listings when the directory hasn't been seen before
-vim.g.netrw_fastbrowse = 2
-
--- Folding
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 0
-
-vim.api.nvim_create_autocmd("FileType", {
-	callback = function()
-		if pcall(vim.treesitter.start) then
-			vim.opt_local.foldmethod = "expr"
-			vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-		end
-	end,
-})
+vim.g.netrw_fastbrowse = 1
 
 -- Make a 1-1 terminal layout
 vim.api.nvim_create_user_command('Slay', function()
-	vim.cmd('below 8split')
-	vim.cmd('terminal')
+    vim.cmd('below 8split')
+    vim.cmd('terminal')
 end, {})
 
 -- Make a 2-1 terminal layout
 vim.api.nvim_create_user_command('Dlay', function()
-	vim.cmd('below 8split')
-	vim.cmd('terminal')
-	vim.cmd('wincmd k')
-	vim.cmd('vsplit')
+    vim.cmd('below 8split')
+    vim.cmd('terminal')
+    vim.cmd('wincmd k')
+    vim.cmd('vsplit')
 end, {})
 
 vim.g.vimtex_compiler_latexmk_engines = {
-  ['_'] = '-xelatex',
+    ['_'] = '-xelatex',
 }
 
 -- Keep cursor position when pasting a line
 vim.keymap.set("n", "p", function()
-	local col = vim.fn.col(".")
-	local linewise = vim.fn.getregtype(vim.v.register) == "V"
-	vim.cmd('normal! "' .. vim.v.register .. vim.v.count1 .. "p")
-	if linewise then
-		vim.fn.cursor(0, col)
-	end
+    local col = vim.fn.col(".")
+    local linewise = vim.fn.getregtype(vim.v.register) == "V"
+    vim.cmd('normal! "' .. vim.v.register .. vim.v.count1 .. "p")
+    if linewise then
+        vim.fn.cursor(0, col)
+    end
 end)
 
 -- Disable comment continuation with o and enter
 vim.api.nvim_create_autocmd("FileType", {
-	callback = function()
-		vim.opt_local.formatoptions:remove({ "o", "r" })
-	end,
+    callback = function()
+        vim.opt_local.formatoptions:remove({ "o", "r" })
+    end,
 })
 
 -- Buffer outline (list of functions, classes etc.)
