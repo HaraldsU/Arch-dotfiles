@@ -36,9 +36,20 @@ vim.opt.listchars = { trail = "·", lead = "·" }
 
 -- Folding
 vim.o.foldcolumn = "4" -- This will show a small column on the left of the window to indicate folds
-vim.o.foldmethod = "manual"
+vim.o.foldmethod = "expr"
+vim.o.foldexpr   = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldlevel  = 0;
-vim.api.nvim_set_hl(0, "Folded", { bg = '', fg = 'brown' })
+vim.api.nvim_set_hl(0, "Folded", { bg = '', fg = '#2f4f4f' })
+
+local qdir = vim.fn.stdpath("config") .. "/queries"
+for _, path in ipairs(vim.fn.glob(qdir .. "/*/*.scm", false, true)) do
+    local lines = vim.fn.readfile(path)
+    if not (lines[1] or ""):match("extends") then
+        local lang = vim.fn.fnamemodify(path, ":h:t") -- e.g. "cpp"
+        local name = vim.fn.fnamemodify(path, ":t:r") -- e.g. "folds"
+        pcall(vim.treesitter.query.set, lang, name, table.concat(lines, "\n"))
+    end
+end
 
 -- Make shenanigans
 -- vim.opt.makeprg = "clang++ -Wall -Wextra % -o %<"
